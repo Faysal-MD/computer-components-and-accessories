@@ -12,12 +12,11 @@
     margin-bottom: 100px;
     padding: 5px;
     height: 300px;
-    /* box-shadow: 5px 5px white; */
 }
 .topIcon{
     width: 150px;
     height:150px;
-    border: 1px solid #4220da;
+    border: 3px solid goldenrod;
     padding: 10px;
     position: relative;
     bottom: 70px;
