@@ -1,0 +1,30 @@
+/* *{
+    background-color: #1a0808e0;
+} */
+.member{
+    border: 1px solid black;
+    height: 100px;
+    width: 50px;
+    margin: 10px;
+}
+.cardItem{
+    margin-top: 100px;
+    margin-bottom: 100px;
+    padding: 5px;
+    height: 300px;
+    /* box-shadow: 5px 5px white; */
+}
+.topIcon{
+    width: 150px;
+    height:150px;
+    border: 1px solid #4220da;
+    padding: 10px;
+    position: relative;
+    bottom: 70px;
+}
+.cardItem:hover{
+    border: 4px solid gold;
+}
+.topIcon:hover{
+    padding: 0;
+}

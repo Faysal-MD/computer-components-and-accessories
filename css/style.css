@@ -20,7 +20,8 @@ header{
    object-position:50% 50%;
 }
 .team-icon{
-    background-color:white;
+    color:white;
+    background-color:black;
     padding:10px;
     margin: 0 100px 15px 0;
     align-items: center;
