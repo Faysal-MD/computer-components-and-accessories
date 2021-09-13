@@ -1,0 +1,14 @@
+body{
+    background: url("/images/banner.jpg");
+}
+
+.allignment {
+    margin-top: 200px;
+    margin-left: 750px;
+    margin-right: 750px;
+}
+.container {
+    padding: 16px;
+    background-color: white;
+    border-radius: 20px;
+  }
