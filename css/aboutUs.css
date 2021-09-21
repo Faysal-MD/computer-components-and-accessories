@@ -5,12 +5,13 @@
 .borderRadius{
     border-radius:10px;
     background-color: white;
+    width:400px
 }
 .details, h4{
     color: #1d065cef;
     font-weight: 600;
 }
-.details, h4, p{
+.details h4, p{
     margin: 0 0 0 20px;
 }
 .details p{
