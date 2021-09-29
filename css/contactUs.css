@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.bg{
+    height: 8em; 
+    width: 85em; 
+    overflow:hidden;
+    background-image: url(../images/contactUsBanner.png);
+}
+.bg p{
+    color:#0d6e6e;
+}
+.contactUsImg{
+    width: 30em
+}
