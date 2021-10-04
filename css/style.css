@@ -3,19 +3,17 @@
     padding: 0;
     /* background-color: cyan; */
 }
-.search-button{
-    background-image: linear-gradient(45deg, #eba98f, #ff6347);
-}
+
 header{
     background-image: linear-gradient(45deg, #9d23a19f, #3b083d);
 }
 .nav-btn{
-    margin: 5px 20px 0 20px;
+    margin: 5px 20px 0 0;
 }
 .logo{
     font-family: 'Orbitron', sans-serif;
     color: #ffffff;
-    margin: 0 80px 0 35px;
+    margin: 0 0 0 35px;
 }
 .sliders{
     margin: 0 0 0 60px;
@@ -26,28 +24,24 @@ header{
 }
 .register-icon{
     background-color: white;
-    padding: 8px;
+    padding: 10px;
+    font-size: 30px;
 } 
 .team-icon{
     color: black;
     background-color: white;
-    padding:5px;
-    margin: 7px 0 0 10px;
+    padding:8px;
+    margin: 8px 0 0 5px;
     width: 48px;
     height: 48px;
+    font-size: 30px;
 } 
-.search-icon{
-    color: white;
-    background-color:black;
-    padding: 10px;
-    position: relative;
-    right:10px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    cursor: pointer;
-}
 .category-icon{
     background-color: black;
     padding: 10px;
     border-radius: 10px;
+}
+.user-icon{
+    margin: 0 0 0 20px;
+    font-size: 20px;
 }

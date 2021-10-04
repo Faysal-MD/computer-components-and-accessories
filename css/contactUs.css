@@ -3,9 +3,6 @@
     padding: 0;
 }
 .bg{
-    height: 8em; 
-    width: 85em; 
-    overflow:hidden;
     background-image: url(../images/contactUsBanner.png);
 }
 .bg p{
@@ -13,4 +10,8 @@
 }
 .contactUsImg{
     width: 30em
+}
+.bg h2{
+    font-size: 50px;
+    font-family: roboto, arial, helvetica;
 }
