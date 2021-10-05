@@ -1,6 +1,7 @@
-/* *{
-    background-color: #1a0808e0;
-} */
+*{
+    margin: 0;
+    padding: 0;
+}
 .member{
     border: 1px solid black;
     height: 100px;
@@ -12,6 +13,7 @@
     margin-bottom: 100px;
     padding: 5px;
     height: 300px;
+    border-radius: 10px;
 }
 .member-img{
     width: 150px;
@@ -26,4 +28,7 @@
 }
 .member-img:hover{
     padding: 0;
+}
+.icon{
+    margin-left: 10px;
 }
