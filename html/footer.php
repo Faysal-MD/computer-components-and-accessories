@@ -2,7 +2,7 @@
     <div class=" d-flex justify-content-around" style="margin-left: 3rem;">
         <div class="">
             <i class="text-center fas fa-map-marker-alt fa-2x mt-3"></i>
-            <p class="getInTouchText text-white mt-3 text-center" style="">123 Street, New York, USA</p>
+            <p class="getInTouchText text-white mt-3 text-center">123 Street, New York, USA</p>
         </div>
         <div class="">
             <i class="fas fa-headset fa-2x mt-3"></i>
@@ -10,7 +10,7 @@
         </div>
         <div class="">
             <i class="fas fa-envelope fa-2x mt-3"></i>
-            <p class="getInTouchText text-white mt-3" style="margin-left: 5px;">180204061@aust.edu</p>
+            <p class="getInTouchText text-white mt-3" style="margin-left: 0px;">ftsolutions@gmail.com</p>
         </div>
     </div>
 </section>

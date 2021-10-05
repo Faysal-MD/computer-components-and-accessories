@@ -1,9 +1,6 @@
 <?php
 session_start();
 include 'config.php';
-// if(isset($_POST["details"])){
-// 	//header("location:productDetails.php");
-// }
 $sql_private = "select private_product from private";
 $result_private = mysqli_query($conn, $sql_private);
 $row_private = mysqli_fetch_assoc($result_private);
@@ -34,38 +31,37 @@ $row_private = mysqli_fetch_assoc($result_private);
 	<section class="container">
 		<div class="row d-flex-justify-content-center align-items-center">
 			<?php
-				if (!isset($_SESSION['loggedin']))
-					$query = "select * from products order by product_id LIMIT ". $row_private['private_product'];
-				else
-					$query = "select * from products order by product_id";
-				$result = mysqli_query($conn, $query);
-				if (mysqli_num_rows($result) > 0) {
-					while ($row = mysqli_fetch_array($result)) {
-				?>
-						<div class="col-md-6 col-lg-4 col-sm-12 d-flex justify-content-center ">
-							<div class="card mt-5 mb-5 border-0 shadow p-3" style="width: 18rem; height: 25.5rem">
-								<div>
-									<img class=img-fluid src="../db_images/<?php echo $row["product_image"]; ?>" class="card-img-top" alt="...">
-								</div>
-								<div class="card-body">
-									<h6 class="card-title"><?php echo $row["product_name"]; ?></h6>
-									<h4 class="card-text" style="color: gray;">Tk. <?php echo $row["product_price"]; ?></h4>
-									<?php echo '<a href="productDetails.php?id=' . $row['product_id'] . '" class="stretched-link"></a>' ?>
-								</div>
+			if (!isset($_SESSION['loggedin']))
+				$query = "select * from products order by product_id LIMIT " . $row_private['private_product'];
+			else
+				$query = "select * from products order by product_id";
+			$result = mysqli_query($conn, $query);
+			if (mysqli_num_rows($result) > 0) {
+				while ($row = mysqli_fetch_array($result)) {
+			?>
+					<div class="col-md-6 col-lg-4 col-sm-12 d-flex justify-content-center ">
+						<div class="card mt-5 mb-5 border-0 shadow p-3" style="width: 18rem; height: 25.5rem">
+							<div>
+								<img class=img-fluid src="../db_images/<?php echo $row["product_image"]; ?>" class="card-img-top" alt="...">
+							</div>
+							<div class="card-body">
+								<h6 class="card-title"><?php echo $row["product_name"]; ?></h6>
+								<h4 class="card-text" style="color: gray;">Tk. <?php echo $row["product_price"]; ?></h4>
+								<?php echo '<a href="productDetails.php?id=' . $row['product_id'] . '" class="stretched-link"></a>' ?>
 							</div>
 						</div>
-
-				<?php
-					}
+					</div>
+			<?php
 				}
-				?>
+			}
+			?>
 		</div>
 	</section>
 	<footer>
-        <?php
-            include "footer.php";
-        ?>  
-    </footer>
+		<?php
+		include "footer.php";
+		?>
+	</footer>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
