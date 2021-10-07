@@ -49,8 +49,8 @@ include "config.php"
                                         <p class="card-text text-center"><?php echo $row["member_designation"]; ?></p>
                                     </div>
                                     <div class="d-flex justify-content-center mb-5">
-                                        <div ><a href="https://www.facebook.com/profile.php?id=100009249422674"><img style="margin-left: 7px" src="../images/fb.png" alt="" srcset=""></a></div>
-                                        <div ><a href="https://www.linkedin.com/feed/"><img style="margin-left: 7px" src="../images/li.png" alt="" srcset=""></a></div>
+                                        <div ><a href="<?php echo $row["facebook"]; ?>"><img style="margin-left: 7px" src="../images/fb.png" alt="" srcset=""></a></div>
+                                        <div ><a href="<?php echo $row["linkedin"]; ?>"><img style="margin-left: 7px" src="../images/li.png" alt="" srcset=""></a></div>
                                         <div><img style="margin-left: 7px" src="../images/skype.png" alt="" srcset=""></div>
                                     </div>
                                 </div>

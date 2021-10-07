@@ -1,130 +1,43 @@
 <?php
-require_once "config.php";
+    include 'config.php';
+$showAlert = false;
+$showError = false;
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $username = $_POST["username"];
+    $email = $_POST["Email"];
+    $password = $_POST["password"];
+    $cpassword = $_POST["confirm_password"];
 
-$username = $password = $confirm_password = $email = "";
-$username_err = $password_err = $confirm_password_err = $email_err = "";
-
-if ($_SERVER['REQUEST_METHOD'] == "POST"){
-
-    // Check if username is empty
-    if(empty(trim($_POST["username"]))){
-        $username_err = "Username cannot be blank";
+    $existSql_username = "SELECT * FROM users WHERE username = '$username'";
+    $existSql_email = "SELECT * FROM users WHERE Email = '$email'";
+    $result_username = mysqli_query($conn, $existSql_username);
+    $result_email = mysqli_query($conn, $existSql_email);
+    $numExistRows_username = mysqli_num_rows($result_username);
+    $numExistRows_email = mysqli_num_rows($result_email);
+    if($numExistRows_username > 0 || $numExistRows_email > 0){
+        $showError = "Username or Email Already Exists";
     }
     else{
-        $sql = "SELECT userID FROM users WHERE username = ?";
-        $stmt = mysqli_prepare($conn, $sql);
-        if($stmt)
-        {
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
-
-            // Set the value of param username
-            $param_username = trim($_POST['username']);
-
-            // Try to execute this statement
-            if(mysqli_stmt_execute($stmt)){
-                mysqli_stmt_store_result($stmt);
-                if(mysqli_stmt_num_rows($stmt) == 1)
-                {
-                    $username_err = "This username is already taken"; 
-                }
-                else{
-                    $username = trim($_POST['username']);
-                }
+        if(($password == $cpassword)){
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO users ( username, Email, password) VALUES ('$username', '$email', '$hash')";
+            $result = mysqli_query($conn, $sql);
+            if ($result){
+                $showAlert = true;
             }
-            else{
-                echo "Something went wrong";
-            }
-        }
-    }
-
-    mysqli_stmt_close($stmt);
-
-    if(empty(trim($_POST["Email"]))){
-      $username_err = "Email cannot be blank";
-  }
-  else{
-      $sql = "SELECT userID FROM users WHERE Email = ?";
-      $stmt = mysqli_prepare($conn, $sql);
-      if($stmt)
-      {
-          mysqli_stmt_bind_param($stmt, "s", $param_email);
-
-          // Set the value of param username
-          $param_email = trim($_POST['Email']);
-
-          // Try to execute this statement
-          if(mysqli_stmt_execute($stmt)){
-              mysqli_stmt_store_result($stmt);
-              if(mysqli_stmt_num_rows($stmt) == 1)
-              {
-                  $email_err = "This email is already taken"; 
-              }
-              else{
-                  $email = trim($_POST['Email']);
-              }
-          }
-          else{
-              echo "Something went wrong";
-          }
-      }
-  }
-
-  mysqli_stmt_close($stmt);
-
-
-// Check for password
-if(empty(trim($_POST['password']))){
-    $password_err = "Password cannot be blank";
-}
-elseif(strlen(trim($_POST['password'])) < 5){
-    $password_err = "Password cannot be less than 5 characters";
-}
-else{
-    $password = trim($_POST['password']);
-}
-
-// Check for confirm password field
-if(trim($_POST['password']) !=  trim($_POST['confirm_password'])){
-    $password_err = "Passwords should match";
-}
-
-
-// If there were no errors, go ahead and insert into the database
-if(empty($username_err) && empty($email_err)  && empty($password_err) && empty($confirm_password_err))
-{
-    $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
-    $stmt = mysqli_prepare($conn, $sql);
-    if ($stmt)
-    {
-        mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_email, $param_password);
-
-        // Set these parameters
-        $param_username = $username;
-        $param_email = $email;
-        $param_password = password_hash($password, PASSWORD_DEFAULT);
-
-        // Try to execute the query
-        if (mysqli_stmt_execute($stmt))
-        {
-            header("location: login.php");
         }
         else{
-            header("location: register.php");
-            echo "<script>alert('Email is already taken');</script>";
+            $showError = "Passwords do not match";
         }
     }
-    mysqli_stmt_close($stmt);
 }
-mysqli_close($conn);
-}
-
+    
 ?>
 
 <!doctype html>
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -147,6 +60,18 @@ mysqli_close($conn);
         ?>
       </div>
     </header>
+    <?php
+    if($showAlert){
+    echo ' <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> Your account is now created and you can login
+    </div> ';
+    }
+    if($showError){
+    echo ' <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> '. $showError.'
+    </div> ';
+    }
+    ?>
     <section  style="background-image: url(../images/reg-bg.png)">
         <div class="container row">
             <aside class="col-md-6 mt-5">

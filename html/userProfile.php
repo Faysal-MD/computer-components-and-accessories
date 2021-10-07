@@ -18,10 +18,11 @@ if (isset($_POST['save'])) {
         $result_username = mysqli_query($conn, $sql_username);
     }
     if (isset($_POST['password']) && isset($_POST['confirm_password'])) {
-        $password = md5($_POST['password']);
-        $confirm_password = md5($_POST['confirm_password']);
+        $password = $_POST['password'];
+        $confirm_password = $_POST['confirm_password'];
         if ($password === $confirm_password) {
-            $sql_pass = "update users set password = '$password' where userID = '$userid'";
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $sql_pass = "update users set password = '$hash' where userID = '$userid'";
             $result_pass = mysqli_query($conn, $sql_pass);
         } else {
             echo "<script>alert('Passwords do not match. Please try again.');</script>";
@@ -34,7 +35,6 @@ if (isset($_POST['logout'])) {
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,53 +63,61 @@ if (isset($_POST['logout'])) {
             ?>
         </div>
     </header> 
-    <section class="container mb-5">
+    <section class="" style="background-image:url(../images/profileBg.png); overflow:hidden">
+        <div class="text-center img-fluid">
+            <img class="mt-5" src="../images/dp.png" alt="" style="width: 10rem">
+        </div>
         <?php
         $query = "select username from users where userID = '$userid'";
         $result = mysqli_query($conn, $query);
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_array($result)) {
         ?>
-                <h1 class="text-center mt-5" style="color:rgba(5, 5, 83, 0.87)">Hello <?php echo $row["username"]; ?></h1>
+                <h1 class="text-center" style="color:white">Hello <?php echo $row["username"]; ?></h1>
         <?php
             }
         }
         ?>
-        <div class="container mt-4">
-            <form action="" method="post">
-                <?php
-
-                $sql = "select * from users where userID='$userid'";
-                $result = mysqli_query($conn, $sql);
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-
-                ?>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">User Name</label>
-                            <input type="text" name="username" class="form-control" value="<?php echo $row['username']; ?>" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email</label>
-                            <input type="text" name="Email" class="form-control" value="<?php echo $row['Email']; ?>" disabled required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control" value="<?php echo $row['password']; ?>" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Password</label>
-                            <input type="password" name="confirm_password" class="form-control" value="<?php echo $row['password']; ?>" required>
-                        </div>
-
-                <?php
-                    }
-                }
-
-                ?>
-                <button type="submit" name="save" class="btn btn-primary btn-lg">Update</button>
-                <button type="submit" name="logout" class="btn btn-secondary btn-lg">Logout</button>
-            </form>
+        <div class="row">
+            <!-- <aside class="col-md-6 col-sm-12 mt-4">
+                <img src="../images/userProfile.png" alt="" srcset="" style="width: 21rem">
+                </aside> -->
+                <aside class="card p-3 border-0 shadow rounded container mt-4 col-md-6 mb-5">
+                    <form action="" method="post">
+                        <?php
+        
+                        $sql = "select * from users where userID='$userid'";
+                        $result = mysqli_query($conn, $sql);
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+        
+                        ?>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">User Name</label>
+                                    <input type="text" name="username" class="form-control" value="<?php echo $row['username']; ?>" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                                    <input type="text" name="Email" class="form-control" value="<?php echo $row['Email']; ?>" disabled required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Password</label>
+                                    <input type="password" name="password" class="form-control" value="<?php echo $row['password']; ?>" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Confirm Password</label>
+                                    <input type="password" name="confirm_password" class="form-control" value="<?php echo $row['password']; ?>" required>
+                                </div>
+        
+                        <?php
+                            }
+                        }
+        
+                        ?>
+                        <button type="submit" name="save" class="btn btn-primary btn-lg">Update</button>
+                        <button type="submit" name="logout" class="btn btn-secondary btn-lg">Logout</button>
+                    </form>
+                </aside>
         </div>
     </section>
 

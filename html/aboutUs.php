@@ -1,3 +1,9 @@
+<?php
+    include "config.php";
+    $sql = "select * from about_us";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,8 +16,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/font-awesome/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body>
@@ -21,47 +26,46 @@
         </div>
         <div>
             <?php
-                include "navbar.php";
+            include "navbar.php";
             ?>
         </div>
-    </header> 
-    <section class="about-us"
-        style="background-image:url(../images/Wave.png); background-repeat:no-repeat; overflow:hidden; width: 100%">
+    </header>
+    <section class="about-us" style="background-image:url(../images/Wave.png); background-repeat:no-repeat; overflow:hidden; width: 100%">
         <div class="row mt-4 d-flex container" style="overflow:hidden">
             <aside class="col-md-7">
                 <img class="img-fluid" src="../images/aboutUs.png" width="500" alt="">
             </aside>
-            <aside class="row  mt-5 col-md-5" >
+            <aside class="row  mt-5 col-md-5">
                 <div class="p-2 borderRadius shadow d-flex justify-content-center align-items-center">
                     <div>
-                        <img class="img-fluid" src="../images/icon/fit.png" width="70" alt="">
+                        <img class="img-fluid" src="../images/icon/<?php echo $row["image1"]; ?>" width="70" alt="">
                     </div>
                     <div class="details">
                         <h4>Find the Perfect Gadget</h4>
                         <small>
-                            <p>Everybody is different, which is why we offer various gadgets for every body.</p>
+                            <p>"<?php echo $row['text1']; ?>"</p>
                         </small>
                     </div>
                 </div>
                 <div class="p-2 borderRadius shadow mt-3 d-flex justify-content-center align-items-center">
                     <div>
-                        <img class="img-fluid" src="../images/icon/exchange.png" width="70" alt="">
+                        <img class="img-fluid" src="../images/icon/<?php echo $row["image2"]; ?>" width="70" alt="">
                     </div>
                     <div class="details">
                         <h4>Free Exchanges</h4>
                         <small>
-                            <p>One of the many reasons you can shop with peace of mind.</p>
+                            <p>"<?php echo $row['text2']; ?>"</p>
                         </small>
                     </div>
                 </div>
                 <div class="p-2 borderRadius shadow d-flex mt-3 justify-content-center align-items-center mb-5">
                     <div>
-                        <img class="img-fluid" src="../images/icon/contact.png" width="70" alt="">
+                        <img class="img-fluid" src="../images/icon/<?php echo $row["image3"]; ?>" width="70" alt="">
                     </div>
                     <div class="details">
                         <h4>Contact Our Seller</h4>
                         <small>
-                            <p>They are here to help you. That's quite literally what we pay them for.</p>
+                            <p>"<?php echo $row['text3']; ?>"</p>
                         </small>
                     </div>
                 </div>
@@ -74,65 +78,50 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="cardItem card shadow border-0">
-                        <div class="text-center">
-                            <img src="images/icon1.png" class="topIcon rounded-circle" alt="...">
-                        </div>
                         <div class="card-body">
                             <h5 class="card-title text-center">Exciting Offers for Users</h5>
-                            <p class="card-text text-center">Cloud-based services can offer our customers single
-                                tenat dedicated environments</p>
+                            <p class="card-text text-center">"<?php echo $row['text4']; ?>"</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="cardItem card shadow border-0">
-                        <div class="text-center">
-                            <img src="images/icon2.png" class="topIcon rounded-circle" alt="...">
-                        </div>
                         <div class="card-body">
-                            <h5 class="card-title text-center">All Type of PC Parts</h5>
-                            <p class="card-text text-center">Working with customers making 100-4,000 highers per
-                                annum
+                            <h5 class="card-title text-center">All Types of PC Parts</h5>
+                            <p class="card-text text-center">"<?php echo $row['text5']; ?>"
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 ">
+                <div class="col-md-4">
                     <div class="cardItem card shadow border-0">
-                        <div class="text-center">
-                            <img src="images/icon3.png" class="topIcon rounded-circle" alt="...">
-                        </div>
                         <div class="card-body">
-                            <h5 class="card-title text-center">Used Products</h5>
-                            <p class="card-text text-center">All of our customers' data is validated. We build
-                                accurate
-                                data banks reporting</p>
+                            <h5 class="card-title text-center">Genuine Products</h5>
+                            <p class="card-text text-center">"<?php echo $row['text6']; ?>"</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
-    <section>
+    <section class="container">
         <h2 class="service-heading text-center mt-5 mb-3">Our Mission</h2>
-        <div class=" mt-6">
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel hic architecto pariatur voluptatem
-                    fugiat
-                    incidunt error optio maxime provident beatae ullam corrupti molestias autem modi expedita quasi sunt
-                    tenetur perspiciatis sed cumque adipisci rerum, recusandae blanditiis ipsam. Accusamus minima eaque,
-                    error quae magni placeat porro! Beatae magni similique a consequuntur!</p>
+        <div class="row ">
+            <aside class="col-md-7 mt-6">
+                <p>"<?php echo $row['text7']; ?>"</p>
+            </aside>
+            <aside class="col-md-5 mb-3">
+                <img src="../images/ourMission.png" alt="" srcset="" style="width: 19rem; overflow: hidden;">
+            </aside>
         </div>
     </section>
 
     <footer>
         <?php
-            include "footer.php";
-        ?>  
+        include "footer.php";
+        ?>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

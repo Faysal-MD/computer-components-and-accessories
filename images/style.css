@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    /* background-color: cyan; */
 }
 
 header{
@@ -47,7 +48,7 @@ header{
 footer{
     background-color:#190c20;
 }
-/* footer img{
+footer img{
     margin-left: 20px;
 }
 footer i{
@@ -56,4 +57,4 @@ footer i{
 .getInTouchText{
     position: relative;
     right: 60px;
-} */
+}
